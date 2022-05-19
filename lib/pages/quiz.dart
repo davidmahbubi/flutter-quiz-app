@@ -58,8 +58,7 @@ class _QuizState extends State<Quiz> {
 
   void answer(int answerIndex) {
     setState(() {
-      score +=
-          _questionsList[currentQuestionIndex].jawaban[answerIndex].score ?? 0;
+      score += _questionsList[currentQuestionIndex].jawaban[answerIndex].score;
       if (currentQuestionIndex == _questionsList.length - 1) {
         Score.scores = {
           'playerName': User.name,
