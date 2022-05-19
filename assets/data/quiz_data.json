@@ -1,0 +1,12 @@
+[
+  {
+    "question": "Sample Question 1",
+    "answers": ["Answer 1", "Answer 2", "Answer 3"],
+    "answerIndex": 2
+  },
+  {
+    "question": "Sample Question 2",
+    "answers": ["Answer 1", "Answer 2", "Answer 3"],
+    "answerIndex": 1
+  }
+]
