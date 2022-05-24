@@ -17,7 +17,7 @@ class _ScoreState extends State<Score> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Score'),
+        title: const Text('Global Score'),
         actions: [
           IconButton(
               onPressed: () async {
@@ -55,7 +55,7 @@ class _ScoreState extends State<Score> {
         child: Column(
           children: <Widget>[
             const Text(
-              'Score List',
+              'Global Score List',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             const SizedBox(height: 30),

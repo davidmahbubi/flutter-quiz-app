@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 class Score {
   static final List<Map<String, dynamic>> _scores = [];
 
@@ -14,6 +16,16 @@ class Score {
 
   static Map<String, dynamic>? getHighestScore() {
     return getSortedScores().isNotEmpty ? getSortedScores()[0] : null;
+  }
+
+  static List<Map<String, dynamic>> getCurrentUserScores() {
+    return getSortedScores()
+        .where((element) =>
+            element['playerName'] ==
+            (FirebaseAuth.instance.currentUser!.isAnonymous
+                ? FirebaseAuth.instance.currentUser!.uid
+                : FirebaseAuth.instance.currentUser!.email))
+        .toList();
   }
 
   static void clearScoreList() {

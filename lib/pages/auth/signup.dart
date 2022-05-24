@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/pages/auth/siginin.dart';
+import 'package:quiz_app/pages/welcome.dart';
 import 'package:quiz_app/service/FirebaseService.dart';
 
 class Signup extends StatefulWidget {
@@ -71,11 +73,13 @@ class _SignupState extends State<Signup> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              FirebaseService.signUpEmailPassword(
+                            onPressed: () async {
+                              User? user =
+                                  await FirebaseService.signUpEmailPassword(
                                 _email.text,
                                 _password.text,
                               );
+                              if (user != null) Navigator.of(context).pop();
                             },
                             child: const Text('Sign Up'),
                           ),

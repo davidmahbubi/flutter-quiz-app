@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/models/user.dart';
 import 'package:quiz_app/pages/auth/signup.dart';
-import 'package:quiz_app/pages/quiz.dart';
 import 'package:quiz_app/service/FirebaseService.dart';
 
 class SignIn extends StatefulWidget {
@@ -106,7 +104,9 @@ class _SignInState extends State<SignIn> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 2.5),
                                 child: OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    FirebaseService.signInAnonymmously();
+                                  },
                                   child: const Text('Anonymous Login'),
                                 ),
                               ),
@@ -122,42 +122,6 @@ class _SignInState extends State<SignIn> {
           ),
         ),
       ),
-    );
-  }
-
-  Future<void> getPlayerName(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (BuildContext bContext) {
-        return AlertDialog(
-          title: const Text('Masukkan Nama Anda'),
-          content: TextField(
-            controller: _playerNameController,
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(context);
-              },
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                String name = _playerNameController.text == ''
-                    ? 'Anonymous'
-                    : _playerNameController.text;
-                User.name = name;
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const Quiz(),
-                  ),
-                );
-              },
-              child: const Text('Konfirmasi'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

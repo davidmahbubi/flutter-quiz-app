@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/components/answer.dart';
 import 'package:quiz_app/components/final_screen.dart';
@@ -61,7 +62,9 @@ class _QuizState extends State<Quiz> {
       score += _questionsList[currentQuestionIndex].jawaban[answerIndex].score;
       if (currentQuestionIndex == _questionsList.length - 1) {
         Score.scores = {
-          'playerName': User.name,
+          'playerName': FirebaseAuth.instance.currentUser!.isAnonymous
+              ? FirebaseAuth.instance.currentUser!.uid
+              : FirebaseAuth.instance.currentUser?.email,
           'score': score,
           'dateTime': DateTime.now()
         };

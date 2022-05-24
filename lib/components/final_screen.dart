@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/models/score.dart' as score_model;
-import 'package:quiz_app/models/user.dart';
 import 'package:quiz_app/pages/score.dart';
 
 class FinalScreen extends StatelessWidget {
@@ -10,14 +10,14 @@ class FinalScreen extends StatelessWidget {
   FinalScreen({Key? key, required this.score, required this.onRestartPressed})
       : super(key: key);
 
-  String? playerName = User.name;
+  String? playerName = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const Text(
-          'Quiz Selesai !',
+          'Quiz Completed !',
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 30),
@@ -34,7 +34,10 @@ class FinalScreen extends StatelessWidget {
         Text(score.toString(), style: const TextStyle(fontSize: 18)),
         const SizedBox(height: 10),
         if (score_model.Score.getHighestScore() != null &&
-            score_model.Score.getHighestScore()!['playerName'] == User.name &&
+            score_model.Score.getHighestScore()!['playerName'] ==
+                (FirebaseAuth.instance.currentUser!.isAnonymous
+                    ? FirebaseAuth.instance.currentUser?.uid
+                    : FirebaseAuth.instance.currentUser?.email) &&
             score_model.Score.getHighestScore()!['score'] == score)
           const Text('You Got Highest Score !!!'),
         const SizedBox(height: 28),
