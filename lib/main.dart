@@ -1,9 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/components/wrapper.dart';
-import 'package:quiz_app/models/user.dart';
-import 'package:quiz_app/pages/auth/siginin.dart';
-import 'package:quiz_app/pages/quiz.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/service/FirebaseService.dart';
 
